@@ -42,6 +42,7 @@ const AddCoffee = () => {
         </button>
       </Link>
       <div className="mx-16 mt-4 px-16 py-10 bg-[#f2f0f0]">
+        <h1 className="text-center text-2xl font-semibold mb-4">Add New Coffee</h1>
         <form onSubmit={handleFormAddButton}>
           {/* Name & chef */}
           <div className="flex justify-between gap-4 mb-5">

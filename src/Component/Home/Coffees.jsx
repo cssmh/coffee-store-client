@@ -25,15 +25,15 @@ const Coffees = ({ getCoffees, allCoffees, setAllCoffees }) => {
           .then((data) => {
             console.log(data);
             if (data.deletedCount > 0) {
+              const remaining = allCoffees.filter(
+                (coffee) => coffee._id !== idx
+              );
+              setAllCoffees(remaining);
               Swal.fire({
                 title: "Deleted!",
                 text: `${name} has been deleted.`,
                 icon: "success",
               });
-              const remaining = allCoffees.filter(
-                (coffee) => coffee._id !== idx
-              );
-              setAllCoffees(remaining);
             }
           });
         // fetch part end
