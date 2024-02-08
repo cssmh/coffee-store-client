@@ -64,10 +64,12 @@ const Coffees = ({ getCoffees, allCoffees, setAllCoffees }) => {
         </p>
       </div>
       <div className="join join-vertical gap-1">
-        <button className="btn text-xl bg-[#d1b7a1] text-white">
-          {" "}
-          <FaEye />{" "}
-        </button>
+        <Link to={`/details/${_id}`}>
+          <button className="btn text-xl bg-[#d1b7a1] text-white">
+            {" "}
+            <FaEye />{" "}
+          </button>
+        </Link>
         <Link to={`/update-coffee/${_id}`}>
           <button className="btn text-xl bg-gray-800 text-white">
             {" "}
