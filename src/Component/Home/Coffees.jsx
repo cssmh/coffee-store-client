@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
-const Coffees = ({ getCoffees }) => {
+const Coffees = ({ getCoffees, allCoffees, setAllCoffees }) => {
   // console.log(getCoffees);
 
   const { _id, name, chef, price, photo } = getCoffees;
@@ -30,6 +30,10 @@ const Coffees = ({ getCoffees }) => {
                 text: `${name} has been deleted.`,
                 icon: "success",
               });
+              const remaining = allCoffees.filter(
+                (coffee) => coffee._id !== idx
+              );
+              setAllCoffees(remaining);
             }
           });
         // fetch part end
@@ -68,6 +72,8 @@ const Coffees = ({ getCoffees }) => {
 
 Coffees.propTypes = {
   getCoffees: PropTypes.object,
+  allCoffees: PropTypes.array,
+  setAllCoffees: PropTypes.func,
 };
 
 export default Coffees;

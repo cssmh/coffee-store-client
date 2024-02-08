@@ -2,9 +2,11 @@ import { Link, useLoaderData } from "react-router-dom";
 import Banner from "./Banner";
 import Coffees from "./Coffees";
 import Icons from "./Icons";
+import { useState } from "react";
 
 const Home = () => {
   const loadCoffees = useLoaderData();
+  const [allCoffees, setAllCoffees] = useState(loadCoffees);
 
   return (
     <div>
@@ -21,8 +23,15 @@ const Home = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-6xl mx-auto">
-        {loadCoffees.map((coffee) => (
-          <Coffees key={coffee._id} getCoffees={coffee}></Coffees>
+        {allCoffees.map((coffee) => (
+          <Coffees
+            key={coffee._id}
+            getCoffees={coffee}
+            // send state to coffees component using prop
+            allCoffees={allCoffees}
+            setAllCoffees={setAllCoffees}
+            // send state to coffees component using prop end
+          ></Coffees>
         ))}
       </div>
     </div>
