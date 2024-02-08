@@ -1,4 +1,7 @@
 import PropTypes from "prop-types";
+import { FaEye } from "react-icons/fa";
+import { MdModeEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 const Coffees = ({ getCoffees, allCoffees, setAllCoffees }) => {
@@ -61,12 +64,21 @@ const Coffees = ({ getCoffees, allCoffees, setAllCoffees }) => {
         </p>
       </div>
       <div className="join join-vertical gap-1">
-        <button className="btn">Details</button>
+        <button className="btn text-xl bg-[#d1b7a1] text-white">
+          {" "}
+          <FaEye />{" "}
+        </button>
         <Link to={`/update-coffee/${_id}`}>
-          <button className="btn">Edit</button>
+          <button className="btn text-xl bg-gray-800 text-white">
+            {" "}
+            <MdModeEdit />{" "}
+          </button>
         </Link>
-        <button onClick={() => handleDelete(_id, name)} className="btn">
-          X
+        <button
+          onClick={() => handleDelete(_id, name)}
+          className="btn text-xl bg-red-500 text-white"
+        >
+          <MdDelete />
         </button>
       </div>
     </div>
