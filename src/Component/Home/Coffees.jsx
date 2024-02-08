@@ -3,7 +3,7 @@ import { FaEye } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+import swal from "sweetalert";
 const Coffees = ({ getCoffees, allCoffees, setAllCoffees }) => {
   // console.log(getCoffees);
 
@@ -11,16 +11,14 @@ const Coffees = ({ getCoffees, allCoffees, setAllCoffees }) => {
 
   const handleDelete = (idx, name) => {
     console.log(idx);
-    Swal.fire({
+    swal({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "You will not be able to recover this!",
       icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
         // fetch part
         fetch(`http://localhost:5000/delete/${idx}`, {
           method: "DELETE",
@@ -33,14 +31,14 @@ const Coffees = ({ getCoffees, allCoffees, setAllCoffees }) => {
                 (coffee) => coffee._id !== idx
               );
               setAllCoffees(remaining);
-              Swal.fire({
-                title: "Deleted!",
-                text: `${name} has been deleted.`,
+              swal(`${name} doc has been deleted!`, {
                 icon: "success",
               });
             }
           });
         // fetch part end
+      } else {
+        swal(`${name} doc is safe!`);
       }
     });
   };
