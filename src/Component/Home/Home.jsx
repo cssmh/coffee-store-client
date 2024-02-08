@@ -1,8 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Banner from "./Banner";
 import Coffees from "./Coffees";
-import Icons from "./Icons";
 import { useState } from "react";
+import Services from "./Services";
 
 const Home = () => {
   const loadCoffees = useLoaderData();
@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div>
       <Banner></Banner>
-      <Icons></Icons>
+      <Services></Services>
       <div className="my-7">
         <h1 className="text-2xl text-center font-semibold text-coffee">
           Our Popular Products

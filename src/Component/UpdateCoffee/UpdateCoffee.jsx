@@ -55,14 +55,14 @@ const UpdateCoffee = () => {
           Back to Home
         </button>
       </Link>
-      <div className="mx-16 mt-4 px-16 py-10 bg-[#f2f0f0]">
+      <div className="md:mx-16 mt-4 px-5 md:px-16 py-10 bg-[#f2f0f0]">
         <h1 className="text-center text-2xl font-semibold mb-4">
           Update Existing Coffee Details
         </h1>
         <form onSubmit={handleUpdate}>
           {/* Name & chef */}
-          <div className="flex justify-between gap-4 mb-5">
-            <div className="form-control w-1/2">
+          <div className="flex flex-col md:flex-row justify-between gap-4 mb-5">
+            <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="label-text font-semibold">Coffee Name</span>
               </label>
@@ -74,7 +74,7 @@ const UpdateCoffee = () => {
                 required
               />
             </div>
-            <div className="form-control w-1/2">
+            <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="label-text font-semibold">Chef</span>
               </label>
@@ -88,8 +88,8 @@ const UpdateCoffee = () => {
             </div>
           </div>
           {/* Price & taste */}
-          <div className="flex justify-between gap-4 mb-5">
-            <div className="form-control w-1/2">
+          <div className="flex flex-col md:flex-row justify-between gap-4 mb-5">
+            <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="label-text font-semibold">Price</span>
               </label>
@@ -101,7 +101,7 @@ const UpdateCoffee = () => {
                 required
               />
             </div>
-            <div className="form-control w-1/2">
+            <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="label-text font-semibold">Taste</span>
               </label>
@@ -115,8 +115,8 @@ const UpdateCoffee = () => {
             </div>
           </div>
           {/* Category & details */}
-          <div className="flex justify-between gap-4 mb-5">
-            <div className="form-control w-1/2">
+          <div className="flex flex-col md:flex-row justify-between gap-4 mb-5">
+            <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="label-text font-semibold">Category</span>
               </label>
@@ -128,7 +128,7 @@ const UpdateCoffee = () => {
                 required
               />
             </div>
-            <div className="form-control w-1/2">
+            <div className="form-control md:w-1/2">
               <label className="label">
                 <span className="label-text font-semibold">Details</span>
               </label>
@@ -142,7 +142,7 @@ const UpdateCoffee = () => {
             </div>
           </div>
           {/* photo */}
-          <div className="flex justify-between gap-4 mb-5">
+          <div className="flex flex-col md:flex-row justify-between gap-4 mb-5">
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text font-semibold">Photo</span>
