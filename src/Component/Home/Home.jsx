@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import Coffees from "./Coffees";
 import { useState } from "react";
 import Services from "./Services";
+import Instagram from "./Instagram";
 
 const Home = () => {
   const loadCoffees = useLoaderData();
@@ -34,6 +35,7 @@ const Home = () => {
           ></Coffees>
         ))}
       </div>
+      <Instagram></Instagram>
     </div>
   );
 };
