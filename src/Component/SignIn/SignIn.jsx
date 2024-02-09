@@ -1,23 +1,26 @@
-import { FaArrowLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContextCoffee } from "../../AuthProvider/AuthProvider";
+import BackHome from "../BackHome/BackHome";
 const SignIn = () => {
-  
+  const { signInUser } = useContext(AuthContextCoffee);
+
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+
+    signInUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => console.log(err.message));
   };
 
   return (
     <div>
-      <Link to={"/"}>
-        <button className="mx-16 mt-4 font-bold flex items-center gap-1">
-          <FaArrowLeft />
-          Back to Home
-        </button>
-      </Link>
+      <BackHome></BackHome>
       <div className="hero min-h-[80vh] bg-base-200 mt-1">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">

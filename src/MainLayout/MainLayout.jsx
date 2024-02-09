@@ -7,8 +7,10 @@ const MainLayout = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <Outlet></Outlet>
-      <Toaster position="top-right" reverseOrder={false} />
+      <div className="min-h-[70vh]">
+        <Outlet></Outlet>
+        <Toaster position="top-right" reverseOrder={false} />
+      </div>
       <Footer></Footer>
     </div>
   );

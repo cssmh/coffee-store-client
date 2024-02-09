@@ -1,5 +1,5 @@
-import { Link, useLoaderData } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa6";
+import { useLoaderData } from "react-router-dom";
+import BackHome from "../BackHome/BackHome";
 
 const Details = () => {
   const detailsForCoffee = useLoaderData();
@@ -9,12 +9,7 @@ const Details = () => {
 
   return (
     <div>
-      <Link to={"/"}>
-        <button className="mx-16 mt-4 font-bold flex items-center gap-1">
-          <FaArrowLeft />
-          Back to Home
-        </button>
-      </Link>
+      <BackHome></BackHome>
       <div className="flex justify-center items-center gap-12 mt-12 bg-base-300 py-12 max-w-[1240px] mx-auto">
         <div className="w-1/2">
           <img src={photo} className="ml-auto" alt="" />

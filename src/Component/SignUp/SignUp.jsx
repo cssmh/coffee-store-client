@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { FaArrowLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 import { AuthContextCoffee } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
+import BackHome from "../BackHome/BackHome";
 const SignUp = () => {
   const { createUser } = useContext(AuthContextCoffee);
 
@@ -15,18 +15,31 @@ const SignUp = () => {
     createUser(email, password)
       .then((res) => {
         console.log(res.user);
+        const email = res.user.email;
+        const createdAt = res.user.metadata.creationTime;
+        const dataToDatabase = { email, createdAt };
+        // set to database
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(dataToDatabase),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("User email added to database");
+            }
+            console.log(data);
+          });
       })
       .catch((err) => console.log(err.message));
   };
 
   return (
     <div>
-      <Link to={"/"}>
-        <button className="mx-16 mt-4 font-bold flex items-center gap-1">
-          <FaArrowLeft />
-          Back to Home
-        </button>
-      </Link>
+      <BackHome></BackHome>
       <div className="hero min-h-[80vh] bg-base-200 mt-1">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">

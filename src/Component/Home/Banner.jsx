@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import coffee from "../../assets/more/3.png";
 const Banner = () => {
   return (
@@ -20,7 +21,11 @@ const Banner = () => {
             possible that people who drink coffee can reduce their risk of early
             death.
           </p>
-          <button className="btn bg-coffee text-white border-none">Get Started</button>
+          <Link to={"/users"}>
+            <button className="btn bg-coffee text-white border-none">
+              Users
+            </button>
+          </Link>
         </div>
       </div>
     </div>

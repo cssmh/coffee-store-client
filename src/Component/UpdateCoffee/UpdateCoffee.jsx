@@ -1,6 +1,6 @@
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa6";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import BackHome from "../BackHome/BackHome";
 
 const UpdateCoffee = () => {
   const updateCoffeeFromLoader = useLoaderData();
@@ -49,12 +49,7 @@ const UpdateCoffee = () => {
 
   return (
     <div>
-      <Link to={"/"}>
-        <button className="mx-16 mt-4 font-bold flex items-center gap-1">
-          <FaArrowLeft />
-          Back to Home
-        </button>
-      </Link>
+      <BackHome></BackHome>
       <div className="md:mx-16 mt-4 px-5 md:px-16 py-10 bg-[#f2f0f0]">
         <h1 className="text-center text-2xl font-semibold mb-4">
           Update Existing Coffee Details
