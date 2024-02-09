@@ -6,7 +6,7 @@ import { useState } from "react";
 const Users = () => {
   const loaderData = useLoaderData();
   const [users, setUsers] = useState(loaderData);
-  //   console.log(loaderData);
+  // console.log(loaderData);
 
   const handleDelete = (idx) => {
     // console.log(idx);
@@ -18,6 +18,7 @@ const Users = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
+        // delete from database
         fetch(`http://localhost:5000/user/delete/${idx}`, {
           method: "DELETE",
         })
@@ -60,7 +61,7 @@ const Users = () => {
               <tr key={data._id}>
                 <td>{data.email}</td>
                 <td>{data.createdAt}</td>
-                <td>{data?.lastLoginAt}</td>
+                <td>{data?.lastLoggedAt}</td>
                 <td>
                   <button
                     onClick={() => handleDelete(data._id)}

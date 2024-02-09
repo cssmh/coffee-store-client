@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContextCoffee } from "../../AuthProvider/AuthProvider";
 import BackHome from "../BackHome/BackHome";
+import toast from "react-hot-toast";
 const SignIn = () => {
   const { signInUser } = useContext(AuthContextCoffee);
 
@@ -9,13 +10,35 @@ const SignIn = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
 
     signInUser(email, password)
       .then((res) => {
         console.log(res.user);
+        if (res.user) {
+          toast.success("User logged in success");
+        }
+        const updatedInfo = {
+          email,
+          lastLoggedAt: res.user?.metadata?.lastSignInTime,
+        };
+        // update lastLoggedAt to database using unique email not to have id
+        fetch("http://localhost:5000/user-update", {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(updatedInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log(data);
+            if (data.modifiedCount > 0) {
+              toast.success("lastSignInTime updated");
+            }
+          });
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => toast.error(err.message));
   };
 
   return (
@@ -24,7 +47,7 @@ const SignIn = () => {
       <div className="hero min-h-[80vh] bg-base-200 mt-1">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Sign Up now!</h1>
+            <h1 className="text-5xl font-bold">Sign In now!</h1>
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleSignIn} className="card-body">
