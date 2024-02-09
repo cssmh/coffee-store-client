@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { AuthContextCoffee } from "../../AuthProvider/AuthProvider";
 import BackHome from "../BackHome/BackHome";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const SignIn = () => {
   const { signInUser } = useContext(AuthContextCoffee);
+  const navigateTo = useNavigate();
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -23,7 +25,7 @@ const SignIn = () => {
           lastLoggedAt: res.user?.metadata?.lastSignInTime,
         };
         // update lastLoggedAt to database using unique email not to have id
-        fetch("http://localhost:5000/user-update", {
+        fetch("https://coffee-store-server-tawny-two.vercel.app/user-update", {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
@@ -37,6 +39,7 @@ const SignIn = () => {
               toast.success("lastSignInTime updated");
             }
           });
+        navigateTo("/");
       })
       .catch((err) => toast.error(err.message));
   };
