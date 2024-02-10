@@ -15,7 +15,7 @@ const AddCoffee = () => {
     const formData = { name, chef, price, taste, category, details, photo };
     // console.log(formData);
 
-    fetch("https://coffee-store-server-tawny-two.vercel.app/coffees", {
+    fetch("https://coffee-store-server-md-momin-hossains-projects.vercel.app/coffees", {
       method: "POST",
       headers: {
         "content-type": "application/json",

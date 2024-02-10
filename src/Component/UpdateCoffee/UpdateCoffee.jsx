@@ -30,7 +30,7 @@ const UpdateCoffee = () => {
     };
     // console.log(formUpdatedData);
 
-    fetch(`https://coffee-store-server-tawny-two.vercel.app/update/${_id}`, {
+    fetch(`https://coffee-store-server-md-momin-hossains-projects.vercel.app/update/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -25,7 +25,7 @@ const SignIn = () => {
           lastLoggedAt: res.user?.metadata?.lastSignInTime,
         };
         // update lastLoggedAt to database using unique email not to have id
-        fetch("https://coffee-store-server-tawny-two.vercel.app/user-update", {
+        fetch("https://coffee-store-server-md-momin-hossains-projects.vercel.app/user-update", {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

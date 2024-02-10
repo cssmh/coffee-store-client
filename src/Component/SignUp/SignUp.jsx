@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { AuthContextCoffee } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import BackHome from "../BackHome/BackHome";
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const { createUser } = useContext(AuthContextCoffee);
+  const navigateTo = useNavigate();
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -20,19 +22,24 @@ const SignUp = () => {
         const createdAt = res.user.metadata.creationTime;
         const dataToDatabase = { email, createdAt };
         // set to database
-        fetch("https://coffee-store-server-tawny-two.vercel.app/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(dataToDatabase),
-        })
+        fetch(
+          "https://coffee-store-server-md-momin-hossains-projects.vercel.app/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(dataToDatabase),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.insertedId) {
               toast.success("User email added to database");
+              // console.log(data);
+              form.reset();
+              navigateTo("/");
             }
-            console.log(data);
           });
       })
       .catch((err) => toast.error(err.message));

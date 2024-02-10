@@ -18,7 +18,7 @@ const Instagram = () => {
           <button className="btn bg-coffee text-white">SignUp</button>
         </Link>
         <Link to={"/signIn"}>
-          <button className="btn bg-coffee text-white">Sign In</button>
+          <button className="btn bg-coffee text-white">SignIn</button>
         </Link>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 max-w-6xl mx-1 md:mx-auto gap-4">
