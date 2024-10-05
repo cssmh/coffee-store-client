@@ -2,7 +2,8 @@ import icon1 from "../../assets/icons/1.png";
 import icon2 from "../../assets/icons/2.png";
 import icon3 from "../../assets/icons/3.png";
 import icon4 from "../../assets/icons/4.png";
-const Services = () => {
+
+const Features = () => {
   return (
     <div className="flex flex-col md:flex-row justify-center gap-9 py-7 mb-5 bg-[#d7beaa]">
       <div className="text-center">
@@ -29,4 +30,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Features;

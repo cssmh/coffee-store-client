@@ -8,6 +8,9 @@ import Details from "../Component/Details/Details";
 import SignUp from "../Component/SignUp/SignUp";
 import SignIn from "../Component/SignIn/SignIn";
 import Users from "../Component/Users/Users";
+import Services from "../Pages/Services";
+import Products from "../Pages/Products";
+import Contact from "../Pages/Contact";
 
 const Root = createBrowserRouter([
   {
@@ -18,8 +21,6 @@ const Root = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () =>
-          fetch("http://localhost:5000/coffees"),
       },
       {
         path: "/add-coffee",
@@ -29,17 +30,13 @@ const Root = createBrowserRouter([
         path: "/update-coffee/:id",
         element: <UpdateCoffee></UpdateCoffee>,
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:5000/coffee-update/${params.id}`
-          ),
+          fetch(`http://localhost:5000/coffee-update/${params.id}`),
       },
       {
         path: "/details/:id",
         element: <Details></Details>,
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:5000/coffee-update/${params.id}`
-          ),
+          fetch(`http://localhost:5000/coffee-update/${params.id}`),
       },
       {
         path: "/signUp",
@@ -52,8 +49,19 @@ const Root = createBrowserRouter([
       {
         path: "/users",
         element: <Users></Users>,
-        loader: () =>
-          fetch("http://localhost:5000/allUsers"),
+        loader: () => fetch("http://localhost:5000/allUsers"),
+      },
+      {
+        path: "/services",
+        element: <Services />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },
