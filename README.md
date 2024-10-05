@@ -1,4 +1,5 @@
-## live link
+# Coffee Master
 
-### https://coffee-store-63246.web.app
-### https://coffee-master.netlify.app
+## Live Demo
+- [BookHaven on Firebase](https://coffee-store-63246.web.app)
+- [BookHaven on Netlify](https://coffee-master.netlify.app)

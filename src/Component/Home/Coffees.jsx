@@ -20,9 +20,12 @@ const Coffees = ({ getCoffees, allCoffees, setAllCoffees }) => {
     }).then((willDelete) => {
       if (willDelete) {
         // fetch part
-        fetch(`https://coffee-store-server-md-momin-hossains-projects.vercel.app/delete/${idx}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `http://localhost:5000/delete/${idx}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

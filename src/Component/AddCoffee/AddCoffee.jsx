@@ -13,9 +13,8 @@ const AddCoffee = () => {
     const details = form.details.value;
     const photo = form.photo.value;
     const formData = { name, chef, price, taste, category, details, photo };
-    // console.log(formData);
 
-    fetch("https://coffee-store-server-md-momin-hossains-projects.vercel.app/coffees", {
+    fetch("http://localhost:5000/coffees", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -25,9 +24,9 @@ const AddCoffee = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if(data.insertedId){
-            swal("Good job!", "Coffee Added", "success");
-            form.reset()
+        if (data.insertedId) {
+          swal("Good job!", "Coffee Added", "success");
+          form.reset();
         }
       });
   };
@@ -36,7 +35,9 @@ const AddCoffee = () => {
     <div>
       <BackHome></BackHome>
       <div className="md:mx-16 mt-4 px-5 md:px-16 py-10 bg-[#f2f0f0]">
-        <h1 className="text-center text-2xl font-semibold mb-4">Add New Coffee</h1>
+        <h1 className="text-center text-2xl font-semibold mb-4">
+          Add New Coffee
+        </h1>
         <form onSubmit={handleFormAddButton}>
           {/* Name & chef */}
           <div className="flex flex-col md:flex-row justify-between gap-4 mb-5">

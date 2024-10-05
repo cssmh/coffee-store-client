@@ -12,6 +12,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "firebase": "^10.8.0",
+    "framer-motion": "^11.11.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "prop-types": "^15.8.1",

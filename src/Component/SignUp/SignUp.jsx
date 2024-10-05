@@ -22,16 +22,13 @@ const SignUp = () => {
         const createdAt = res.user.metadata.creationTime;
         const dataToDatabase = { email, createdAt };
         // set to database
-        fetch(
-          "https://coffee-store-server-md-momin-hossains-projects.vercel.app/users",
-          {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(dataToDatabase),
-          }
-        )
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(dataToDatabase),
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.insertedId) {

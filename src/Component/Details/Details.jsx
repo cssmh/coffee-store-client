@@ -3,7 +3,6 @@ import BackHome from "../BackHome/BackHome";
 
 const Details = () => {
   const detailsForCoffee = useLoaderData();
-  console.log(detailsForCoffee);
   const { name, chef, price, taste, category, details, photo } =
     detailsForCoffee;
 

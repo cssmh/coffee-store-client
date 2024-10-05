@@ -19,9 +19,12 @@ const Users = () => {
     }).then((willDelete) => {
       if (willDelete) {
         // delete from database
-        fetch(`https://coffee-store-server-md-momin-hossains-projects.vercel.app/user/delete/${idx}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `http://localhost:5000/user/delete/${idx}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

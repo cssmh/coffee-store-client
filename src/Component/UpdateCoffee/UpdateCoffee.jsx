@@ -30,7 +30,7 @@ const UpdateCoffee = () => {
     };
     // console.log(formUpdatedData);
 
-    fetch(`https://coffee-store-server-md-momin-hossains-projects.vercel.app/update/${_id}`, {
+    fetch(`http://localhost:5000/update/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

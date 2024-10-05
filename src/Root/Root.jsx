@@ -18,7 +18,8 @@ const Root = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("https://coffee-store-server-md-momin-hossains-projects.vercel.app/coffees"),
+        loader: () =>
+          fetch("http://localhost:5000/coffees"),
       },
       {
         path: "/add-coffee",
@@ -28,26 +29,31 @@ const Root = createBrowserRouter([
         path: "/update-coffee/:id",
         element: <UpdateCoffee></UpdateCoffee>,
         loader: ({ params }) =>
-          fetch(`https://coffee-store-server-md-momin-hossains-projects.vercel.app/coffee-update/${params.id}`),
+          fetch(
+            `http://localhost:5000/coffee-update/${params.id}`
+          ),
       },
       {
         path: "/details/:id",
         element: <Details></Details>,
         loader: ({ params }) =>
-          fetch(`https://coffee-store-server-md-momin-hossains-projects.vercel.app/coffee-update/${params.id}`),
+          fetch(
+            `http://localhost:5000/coffee-update/${params.id}`
+          ),
       },
       {
         path: "/signUp",
-        element: <SignUp></SignUp>
+        element: <SignUp></SignUp>,
       },
       {
         path: "/signIn",
-        element: <SignIn></SignIn>
+        element: <SignIn></SignIn>,
       },
       {
         path: "/users",
         element: <Users></Users>,
-        loader: () => fetch("https://coffee-store-server-md-momin-hossains-projects.vercel.app/allUsers")
+        loader: () =>
+          fetch("http://localhost:5000/allUsers"),
       },
     ],
   },
