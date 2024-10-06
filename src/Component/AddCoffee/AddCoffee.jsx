@@ -14,7 +14,7 @@ const AddCoffee = () => {
     const photo = form.photo.value;
     const formData = { name, chef, price, taste, category, details, photo };
 
-    fetch("http://localhost:5000/coffees", {
+    fetch("https://coffee-store-server-tawny-two.vercel.app/coffees", {
       method: "POST",
       headers: {
         "content-type": "application/json",

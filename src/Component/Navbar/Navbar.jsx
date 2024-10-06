@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaShoppingCart } from "react-icons/fa"; // Import FaShoppingCart icon
 import photo from "../../assets/more/logo1.png";
 import { useState } from "react";
 
@@ -16,7 +16,9 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <img src={photo} className="w-7" alt="Coffee Master Logo" />
-          <h1 className="text-2xl text-white ml-3 font-semibold">Coffee Master</h1>
+          <h1 className="text-2xl text-white ml-3 font-semibold">
+            Coffee Master
+          </h1>
         </div>
 
         {/* Desktop Navigation */}
@@ -44,6 +46,13 @@ const Navbar = () => {
             className="text-white text-lg hover:text-gray-300 transition duration-300"
           >
             Contact
+          </Link>
+          {/* Cart Link */}
+          <Link
+            to="/cart"
+            className="text-white text-lg hover:text-gray-300 transition duration-300"
+          >
+            <FaShoppingCart className="inline-block mr-1" /> Cart
           </Link>
         </nav>
 
@@ -86,6 +95,14 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             >
               Contact
+            </Link>
+            {/* Cart Link in Mobile Menu */}
+            <Link
+              to="/cart"
+              className="block text-white text-center hover:bg-gray-700 py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              <FaShoppingCart className="inline-block mr-1" /> Cart
             </Link>
           </nav>
         </div>

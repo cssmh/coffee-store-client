@@ -18,7 +18,7 @@ const CoffeesCard = ({ getCoffees, allCoffees, setAllCoffees }) => {
       if (willDelete) {
         try {
           const response = await axios.delete(
-            `http://localhost:5000/delete/${idx}`
+            `https://coffee-store-server-tawny-two.vercel.app/delete/${idx}`
           );
 
           if (response.data.deletedCount > 0) {

@@ -11,6 +11,7 @@ import Users from "../Component/Users/Users";
 import Services from "../Pages/Services";
 import Products from "../Pages/Products";
 import Contact from "../Pages/Contact";
+import Cart from "../Pages/Cart";
 
 const Root = createBrowserRouter([
   {
@@ -30,13 +31,17 @@ const Root = createBrowserRouter([
         path: "/update-coffee/:id",
         element: <UpdateCoffee></UpdateCoffee>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/coffee-update/${params.id}`),
+          fetch(
+            `https://coffee-store-server-tawny-two.vercel.app/coffee-update/${params.id}`
+          ),
       },
       {
         path: "/details/:id",
         element: <Details></Details>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/coffee-update/${params.id}`),
+          fetch(
+            `https://coffee-store-server-tawny-two.vercel.app/coffee-update/${params.id}`
+          ),
       },
       {
         path: "/signUp",
@@ -49,7 +54,8 @@ const Root = createBrowserRouter([
       {
         path: "/users",
         element: <Users></Users>,
-        loader: () => fetch("http://localhost:5000/allUsers"),
+        loader: () =>
+          fetch("https://coffee-store-server-tawny-two.vercel.app/allUsers"),
       },
       {
         path: "/services",
@@ -62,6 +68,10 @@ const Root = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

@@ -22,7 +22,7 @@ const SignUp = () => {
         const createdAt = res.user.metadata.creationTime;
         const dataToDatabase = { email, createdAt };
         // set to database
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-store-server-tawny-two.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

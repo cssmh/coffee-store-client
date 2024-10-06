@@ -8,7 +8,9 @@ const Products = () => {
   useEffect(() => {
     const fetchCoffees = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/coffees");
+        const response = await axios.get(
+          "https://coffee-store-server-tawny-two.vercel.app/coffees"
+        );
         setAllCoffees(response.data);
       } catch (error) {
         console.error("Error fetching coffees:", error);
@@ -18,13 +20,18 @@ const Products = () => {
     fetchCoffees();
   }, []);
 
-  const handleAddToCart = async (coffeeId) => {
+  const handleAddToCart = async (name, photo, price) => {
     try {
       const cartItem = {
-        coffeeId: coffeeId,
+        coffeeName: name,
+        Image: photo,
+        Price: price,
         quantity: 1,
       };
-      await axios.post("http://localhost:5000/cart", cartItem);
+      await axios.post(
+        "https://coffee-store-server-tawny-two.vercel.app/cart",
+        cartItem
+      );
       toast.success("Coffee added to cart!");
     } catch (error) {
       console.error("Error adding to cart:", error);
@@ -64,7 +71,9 @@ const Products = () => {
                   Price: {product.price} BDT
                 </p>
                 <button
-                  onClick={() => handleAddToCart(product._id)} // Call handleAddToCart on button click
+                  onClick={() =>
+                    handleAddToCart(product.name, product.photo, product.price)
+                  }
                   className="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark transition-colors"
                 >
                   Add to Cart

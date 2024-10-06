@@ -1,112 +1,87 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
-const Cart = ({ userId }) => {
-  const [cartItems, setCartItems] = useState([]);
-  const [newCoffee, setNewCoffee] = useState({
-    userId: userId,
-    coffeeId: "",
-    quantity: 1,
-  });
+const Cart = () => {
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const fetchCartItems = async () => {
+    const fetchCart = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/cart/${userId}`
+          "https://coffee-store-server-tawny-two.vercel.app/cart"
         );
-        setCartItems(response.data);
+        setCart(response.data);
       } catch (error) {
-        console.error("Error fetching cart items:", error);
-        toast.error("Failed to fetch cart items");
+        console.error("Error fetching cart:", error);
       }
     };
 
-    fetchCartItems();
-  }, [userId]);
+    fetchCart();
+  }, []);
 
-  // Add a coffee to the cart
-  const handleAddToCart = async (e) => {
-    e.preventDefault();
+  const removeFromCart = async (id) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/cart",
-        newCoffee
+      const res = await axios.delete(
+        `https://coffee-store-server-tawny-two.vercel.app/cart/${id}`
       );
-      setCartItems((prevItems) => [...prevItems, response.data]);
-      toast.success("Coffee added to cart!");
-      setNewCoffee({ ...newCoffee, coffeeId: "" }); // Clear the coffeeId
+      console.log(res.data);
+      setCart(cart.filter((item) => item._id !== id));
     } catch (error) {
-      console.error("Error adding to cart:", error);
-      toast.error("Failed to add coffee to cart");
+      console.error("Error removing item from cart:", error);
     }
   };
 
-  // Remove a coffee from the cart
-  const handleRemoveFromCart = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/cart/${id}`);
-      setCartItems((prevItems) => prevItems.filter((item) => item._id !== id));
-      toast.success("Coffee removed from cart!");
-    } catch (error) {
-      console.error("Error removing from cart:", error);
-      toast.error("Failed to remove coffee from cart");
-    }
-  };
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.Price * item.quantity,
+    0
+  );
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
-
-      <form onSubmit={handleAddToCart} className="mb-4">
-        <input
-          type="text"
-          placeholder="Coffee ID"
-          value={newCoffee.coffeeId}
-          onChange={(e) =>
-            setNewCoffee({ ...newCoffee, coffeeId: e.target.value })
-          }
-          required
-          className="border p-2 mr-2"
-        />
-        <input
-          type="number"
-          value={newCoffee.quantity}
-          onChange={(e) =>
-            setNewCoffee({ ...newCoffee, quantity: e.target.value })
-          }
-          required
-          min="1"
-          className="border p-2 mr-2"
-        />
-        <button type="submit" className="bg-blue-500 text-white p-2">
-          Add to Cart
-        </button>
-      </form>
-
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <ul>
-          {cartItems.map((item) => (
-            <li
-              key={item._id}
-              className="flex justify-between items-center mb-2"
-            >
-              <span>
-                Coffee ID: {item.coffeeId} | Quantity: {item.quantity}
-              </span>
-              <button
-                onClick={() => handleRemoveFromCart(item._id)}
-                className="bg-red-500 text-white p-1"
-              >
-                Remove
+    <div className="bg-gray-100 py-10">
+      <div className="max-w-[1230px] mx-auto px-6">
+        <h2 className="text-3xl font-bold text-center mb-8">Your Cart</h2>
+        {cart.length === 0 ? (
+          <p className="text-center text-gray-600">Your cart is empty.</p>
+        ) : (
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="space-y-4">
+              {cart.map((item) => (
+                <div
+                  key={item._id}
+                  className="flex justify-between items-center border-b pb-4"
+                >
+                  <div className="flex items-center">
+                    <img
+                      src={item?.Image}
+                      alt={item.coffeeName}
+                      className="w-20 h-20 object-cover rounded"
+                    />
+                    <div className="ml-4">
+                      <h3 className="text-lg font-semibold">
+                        {item.coffeeName}
+                      </h3>
+                      <p className="text-gray-600">Price: {item.Price} BDT</p>
+                      <p className="text-gray-600">Quantity: {item.quantity}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => removeFromCart(item._id)}
+                    className="text-red-600 hover:text-red-800 transition duration-300"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex justify-between items-center">
+              <h3 className="text-xl font-bold">Total: {totalPrice} BDT</h3>
+              <button className="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark transition-colors">
+                Checkout
               </button>
-            </li>
-          ))}
-        </ul>
-      )}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

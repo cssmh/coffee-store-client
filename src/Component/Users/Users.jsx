@@ -20,7 +20,7 @@ const Users = () => {
       if (willDelete) {
         // delete from database
         fetch(
-          `http://localhost:5000/user/delete/${idx}`,
+          `https://coffee-store-server-tawny-two.vercel.app/user/delete/${idx}`,
           {
             method: "DELETE",
           }

@@ -9,7 +9,9 @@ const PopularCoffee = () => {
   useEffect(() => {
     const fetchCoffees = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/coffees");
+        const response = await axios.get(
+          "https://coffee-store-server-tawny-two.vercel.app/coffees"
+        );
         setAllCoffees(response.data);
       } catch (error) {
         console.error("Error fetching coffees:", error);
