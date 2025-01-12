@@ -1,6 +1,5 @@
 import { Outlet, useLocation, useNavigation } from "react-router-dom";
 import Navbar from "../Component/Navbar/Navbar";
-import { Toaster } from "react-hot-toast";
 import Footer from "../Component/Footer/Footer";
 import { useEffect } from "react";
 import { FallingLines } from "react-loader-spinner";
@@ -10,11 +9,11 @@ const MainLayout = () => {
   useEffect(() => {
     const path = loc.pathname.toUpperCase();
     if (path === "/") {
-      document.title = "Coffee Master-Home";
+      document.title = "Coffee Master | Home";
     } else if (loc.state) {
       document.title = `${loc.state}`;
     } else {
-      document.title = `Coffee${path.replace("/", "-")}`;
+      document.title = `Coffee${path.replace("/", " | ")}`;
     }
   }, [loc.pathname, loc.state]);
   const navigationForSpinner = useNavigation();
@@ -35,7 +34,6 @@ const MainLayout = () => {
         ) : (
           <Outlet />
         )}
-        <Toaster position="top-right" reverseOrder={false} />
       </div>
       <Footer />
     </div>

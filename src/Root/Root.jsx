@@ -7,7 +7,6 @@ import UpdateCoffee from "../Component/UpdateCoffee/UpdateCoffee";
 import Details from "../Component/Details/Details";
 import SignUp from "../Component/SignUp/SignUp";
 import SignIn from "../Component/SignIn/SignIn";
-import Users from "../Component/Users/Users";
 import Services from "../Pages/Services";
 import Products from "../Pages/Products";
 import Contact from "../Pages/Contact";
@@ -50,12 +49,6 @@ const Root = createBrowserRouter([
       {
         path: "/signIn",
         element: <SignIn></SignIn>,
-      },
-      {
-        path: "/users",
-        element: <Users></Users>,
-        loader: () =>
-          fetch("https://coffee-store-server-tawny-two.vercel.app/allUsers"),
       },
       {
         path: "/services",

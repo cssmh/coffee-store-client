@@ -16,9 +16,9 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const allAuthCoffee = { createUser, signInUser };
+  const authCoffee = { createUser, signInUser };
   return (
-    <AuthContextCoffee.Provider value={allAuthCoffee}>
+    <AuthContextCoffee.Provider value={authCoffee}>
       {children}
     </AuthContextCoffee.Provider>
   );

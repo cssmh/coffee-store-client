@@ -12,7 +12,7 @@ const Instagram = () => {
   return (
     <div className="my-7 p-5 bg-[#f9f9f9] rounded-lg shadow-lg">
       <h1 className="text-2xl text-center font-semibold text-coffee">
-        Follow on Instagram
+        Be a Member first
       </h1>
       <div className="flex justify-center my-5 gap-3">
         <Link to={"/signUp"}>

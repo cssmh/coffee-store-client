@@ -1,50 +1,30 @@
-import { useContext } from "react";
-import { AuthContextCoffee } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import BackHome from "../BackHome/BackHome";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import useAuth from "../../hook/useAuth";
+
 const SignUp = () => {
-  const { createUser } = useContext(AuthContextCoffee);
+  const { createUser } = useAuth();
   const navigateTo = useNavigate();
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
-    createUser(email, password)
-      .then((res) => {
-        // console.log(res.user);
-        toast.success("Sign Up success");
-        const email = res.user.email;
-        const createdAt = res.user.metadata.creationTime;
-        const dataToDatabase = { email, createdAt };
-        // set to database
-        fetch("https://coffee-store-server-tawny-two.vercel.app/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(dataToDatabase),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              toast.success("User email added to database");
-              // console.log(data);
-              form.reset();
-              navigateTo("/");
-            }
-          });
-      })
-      .catch((err) => toast.error(err.message));
+    try {
+      await createUser(email, password);
+      toast.success("SignUp Successful");
+    } catch (error) {
+      console.log(error);
+      navigateTo("/");
+    }
   };
 
   return (
     <div>
-      <BackHome></BackHome>
+      <BackHome />
       <div className="hero min-h-[80vh] bg-base-200 mt-1">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -84,6 +64,12 @@ const SignUp = () => {
               <div className="form-control mt-6">
                 <button className="btn bg-coffee text-white">Sign Up</button>
               </div>
+              <p className="mt-4 text-center">
+                Already have an account?{" "}
+                <Link to="/signIn" className="text-coffee link link-hover">
+                  Sign In
+                </Link>
+              </p>
             </form>
           </div>
         </div>

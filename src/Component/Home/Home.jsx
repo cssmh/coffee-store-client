@@ -1,4 +1,3 @@
-import Cart from "../../Pages/Cart";
 import Banner from "./Banner";
 import Features from "./Features";
 import Instagram from "./Instagram";
@@ -10,7 +9,6 @@ const Home = () => {
       <Banner />
       <Features />
       <PopularCoffee />
-      <Cart />
       <Instagram />
     </div>
   );

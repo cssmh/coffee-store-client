@@ -1,52 +1,30 @@
-import { useContext } from "react";
-import { AuthContextCoffee } from "../../AuthProvider/AuthProvider";
-import BackHome from "../BackHome/BackHome";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import BackHome from "../BackHome/BackHome";
+import { useNavigate, Link } from "react-router-dom";
+import useAuth from "../../hook/useAuth";
+
 const SignIn = () => {
-  const { signInUser } = useContext(AuthContextCoffee);
+  const { signInUser } = useAuth();
   const navigateTo = useNavigate();
 
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email, password);
 
-    signInUser(email, password)
-      .then((res) => {
-        console.log(res.user);
-        if (res.user) {
-          toast.success("User logged in success");
-        }
-        const updatedInfo = {
-          email,
-          lastLoggedAt: res.user?.metadata?.lastSignInTime,
-        };
-        // update lastLoggedAt to database using unique email not to have id
-        fetch("https://coffee-store-server-tawny-two.vercel.app/user-update", {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(updatedInfo),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log(data);
-            if (data.modifiedCount > 0) {
-              toast.success("lastSignInTime updated");
-            }
-          });
-        navigateTo("/");
-      })
-      .catch((err) => toast.error(err.message));
+    try {
+      await signInUser(email, password);
+      toast.success("SignIn Successful");
+      navigateTo("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div>
-      <BackHome></BackHome>
+      <BackHome />
       <div className="hero min-h-[80vh] bg-base-200 mt-1">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -84,8 +62,14 @@ const SignIn = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-coffee text-white">Sign Up</button>
+                <button className="btn bg-coffee text-white">Sign In</button>
               </div>
+              <p className="mt-4 text-center">
+                Don&apos;t have an account?{" "}
+                <Link to="/signUp" className="text-coffee link link-hover">
+                  Sign Up
+                </Link>
+              </p>
             </form>
           </div>
         </div>
